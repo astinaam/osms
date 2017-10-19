@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <h2 style="padding-bottom: 30px; text-align: center;">Login</h2>
-        <form action="#" class="form-horizontal" method="post">
+        <form action="http://localhost/osms/login/auth" class="form-horizontal" method="post">
         <div class="col-md-6 col-md-offset-4">
                 <div class="form-inline">
                     <label class="control-label col-md-3" for="user">Username</label>
@@ -16,7 +16,7 @@
         <div class="col-md-6 col-md-offset-4">
                 <div class="form-inline" style="padding-top: 5px !important;" >
                     <label class="control-label col-md-3" for="pass">Password</label>
-                    <input class="form-control col-md-3" type="text" name="password" id="pass" placeholder="password">
+                    <input class="form-control col-md-3" type="password" name="password" id="pass" placeholder="password">
                 </div>
         </div>
             <div class="from-group" >

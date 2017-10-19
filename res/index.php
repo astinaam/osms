@@ -1,31 +1,48 @@
 <?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    $payloads = array();
+//
+//    spl_autoload_register( function ($class_name)
+//    {
+//        if(file_exists('./app/core/'.$class_name.'.php'))
+//        {
+//            require_once ('./app/core/'.$class_name.'.php');
+//        }
+//        else if(file_exists('./app/controller/'.$class_name.'.php'))
+//        {
+//            require_once ('./app/controller/'.$class_name.'.php');
+//        }
+//        else if(file_exists('./app/model/'.$class_name.'.php'))
+//        {
+//            require_once ('./app/model/'.$class_name.'.php');
+//        }
+//        else if(file_exists('./app/view/'.$class_name.'.php'))
+//        {
+//            require_once ('./app/view/'.$class_name.'.php');
+//        }
+//        else if(file_exists('./db/'.$class_name.'.php'))
+//        {
+//            require_once ('./db/'.$class_name.'.php');
+//        }
+//    });
+
+    define('ROOT',__DIR__.'/../');
+    define('APP',ROOT.'app/');
+//    echo APP;
+    include_once  ROOT.'db/dbutil.php';
+
+    include_once ROOT.'config/config.php';
+
+    include_once  APP.'core/App.php';
+
+    include_once  APP.'core/Route.php';
+
+    include_once APP.'core/Controller.php';
 
 
-    spl_autoload_register( function ($class_name)
-    {
-        if(file_exists('./app/core/'.$class_name.'.php'))
-        {
-            require_once ('./app/core/'.$class_name.'.php');
-        }
-        else if(file_exists('./app/controller/'.$class_name.'.php'))
-        {
-            require_once ('./app/controller/'.$class_name.'.php');
-        }
-        else if(file_exists('./app/model/'.$class_name.'.php'))
-        {
-            require_once ('./app/model/'.$class_name.'.php');
-        }
-        else if(file_exists('./app/view/'.$class_name.'.php'))
-        {
-            require_once ('./app/view/'.$class_name.'.php');
-        }
-        else if(file_exists('./db/'.$class_name.'.php'))
-        {
-            require_once ('./db/'.$class_name.'.php');
-        }
-    });
+    $app = new App();
+
 
 
 
@@ -85,3 +102,5 @@
 //        include_once __DIR__."/../app/view/footer.php";
 //    }
 //}
+
+?>
