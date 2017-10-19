@@ -4,6 +4,10 @@ class login extends Controller
 {
     public  function index()
     {
+        if(isset($_SESSION['user']))
+        {
+            header("location: ".Util::php_link("home"));
+        }
         require APP.'view/templates/header.php';
         require APP.'view/view.login.php';
         require APP.'view/templates/footer.php';
@@ -12,28 +16,48 @@ class login extends Controller
     public function auth()
     {
         require APP . 'view/templates/header.php';
-        //echo "login success!!";
-        //echo $_POST['username']." welcome!";
+
+        if(empty($_POST['username']) || empty($_POST['password']))
+        {
+            Util::log("Nothing");
+            Util::setNotification("Please fill all the field.");
+            Util::setNotificationBackground("darkred");
+            Util::js("notification();");
+            require APP.'view/view.login.php';
+            require APP.'view/templates/footer.php';
+            return;
+        }
+
         $user = $_POST['username'];
         $pass = $_POST['password'];
+
+        Util::log($user);
+        Util::log($pass);
 
         $db = DBUtil::getInstance();
 
         $result = $db->doQuery("SELECT * FROM tbl_admin WHERE admin_email='$user' AND admin_pass='$pass' ;");
-//        var_dump($result);
-        if ($result->num_rows > 0) {
-            echo "<script>document.getElementById('loggedin').innerHTML = 'admin';</script>";
-            echo URL.'res/admin';
-//            header("Location: ".URL.'res/admin'.'"');
-
+        if ($result->num_rows > 0)
+        {
+            Util::log("User login!");
+            $_SESSION['user'] = $db->getAllRows()[0]['admin_name'];
+            header("Location: ".Util::php_link("home"));
         } else
         {
-            echo "<script>alert('incorrect login!');</script>";
-//            header("Location: http://localhost/osms/login");
+            Util::setNotification("Wrong Username or Password!");
+            Util::setNotificationBackground("darkred");
+            Util::js("notification();");
 
+            require APP.'view/view.login.php';
+            require APP.'view/templates/footer.php';
         }
-
-
-        require APP.'view/templates/footer.php';
+    }
+    public function logout()
+    {
+        if(session_status() != PHP_SESSION_NONE)
+        {
+            session_destroy();
+        }
+        header("Location: ".Util::php_link("home"));
     }
 }

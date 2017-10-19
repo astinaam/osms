@@ -1,18 +1,19 @@
 <?php
-//    if(PHP_SESSION_NONE == 1)
-//    {
-//        session_start();
-//    }
+    if (session_status() == PHP_SESSION_NONE)
+    {
+        session_start();
+    }
 ?>
 
 <html>
     <head>
         <title>Unitech Online Shop Management System</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="http://localhost/osms/bootstrap/css/bootstrap.min.css">
-        <script src="js/jquery-3.2.1.min.js" ></script>
-        <script src="bootstrap/js/bootstrap.js"></script>
+        <link rel="stylesheet" href="http://localhost/osms/css/style.css">
+        <script src="http://localhost/osms/js/jquery-3.2.1.min.js" ></script>
+        <script src="http://localhost/osms/js/script.js" ></script>
+        <script src="http://localhost/osms/bootstrap/js/bootstrap.js"></script>
     </head>
     <header id="header">
         <nav class="navbar navbar-default">
@@ -24,7 +25,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand title" href="home">Unitech</a>
+                    <a class="navbar-brand title" href="<?php Util::link("home"); ?>">Unitech</a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
@@ -55,50 +56,41 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#">Cart</a></li>
-                        <li class="dropdown">
-                            <a id="loggedin" class="dropdown-toggle" data-toggle="dropdown"
-                               role="button" aria-haspopup="true" aria-expanded="false">
-                                Login
-                                <?php
-                                    if(isset($_SESSION['user']))
-                                    {
-                                        log("Notice:: User Logged in!");
-                                    }
-                                    else
-                                    {
-                                        echo "<span class='caret'></span>";
-                                    }
-                                ?>
-                            </a>
-                            <?php
+                        <?php
                             if(isset($_SESSION['user']))
                             {
-
+                                ?>
+                                <li class="dropdown">
+                                    <a id="loggedin" class="dropdown-toggle" data-toggle="dropdown"
+                                       role="button" aria-haspopup="true" aria-expanded="false">
+                                        <?php
+                                        if(isset($_SESSION['user']))
+                                        {
+                                            echo $_SESSION['user']."<span class='caret'></span>";
+                                            //Util::log("User Logged in!");
+                                        }
+                                        ?>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Profile</a></li>
+                                        <li><a href="#">Account Setting</a></li>
+                                        <li><a href="#">Orders Log</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="<?php  Util::link("login/logout"); ?>">Logout</a></li>
+                                    </ul>
+                                </li>
+                                <?php
                             }
                             else
                             {
-                                ?>
-
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Profile</a></li>
-                                    <li><a href="#">Account Setting</a></li>
-                                    <li><a href="#">Orders Log</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#">Logout</a></li>
-                                </ul>
-                            <?php
-
+                                echo "<li><a href='".Util::php_link("login")."'>Login / Sign Up</a></li>";
                             }
-
-                            ?>
-
-
-
-                        </li>
+                        ?>
                     </ul>
                 </div>
             </div>
         </nav>
+        <div id="notification">A simple Notification</div>
     </header>
 
     <body>

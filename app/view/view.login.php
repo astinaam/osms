@@ -1,6 +1,4 @@
-<?php
-    include_once "header.php";
-?>
+<br><br>
 
 <div class="container">
     <div class="row">
@@ -31,8 +29,3 @@
         </div>
     </div>
 </div>
-
-<?php
-    include_once "footer.php";
-?>
-
