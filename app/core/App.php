@@ -38,11 +38,16 @@
                         $this->controller->index();
                     }
                     else {
-                        echo "fck";
+                        require APP.'controller/error.php';
+                        $this->controller = new $this->controller();
+                        $this->controller->index();
                     }
                 }
             } else {
-                echo "dbj";
+
+                require APP.'controller/error.php';
+                $this->controller = new Errors();
+                $this->controller->index();
             }
         }
         public function parseURL()
