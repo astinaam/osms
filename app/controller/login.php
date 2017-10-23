@@ -12,7 +12,7 @@ class login extends Controller
         require APP.'view/view.login.php';
         if(isset($_SESSION['signupsuccess']))
         {
-            Util::setNotification("Sign Up Successfull! Please login to enter the system!");
+            Util::setNotification("Sign Up Successful! Please login to enter the system!");
             Util::setNotificationBackground("green");
             Util::js("notification();");
             session_destroy();

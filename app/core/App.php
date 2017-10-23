@@ -1,6 +1,5 @@
 <?php
-//echo "app required!"."<br>";
-//echo URL;
+
     class App
     {
         protected $controller = null;
