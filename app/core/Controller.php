@@ -2,6 +2,8 @@
 
 class Controller
 {
+    public $con;
+
     public  function  __construct()
     {
 

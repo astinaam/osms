@@ -16,6 +16,11 @@
             require APP.'view/templates/footer.php';
         }
 
+        public function admin()
+        {
+            echo "admin";
+        }
+
     }
 
 ?>

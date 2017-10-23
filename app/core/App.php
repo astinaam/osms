@@ -9,6 +9,7 @@
 
         public  function __construct()
         {
+
             $this->parseURL();
 //            var_dump($this->controller);
 //            var_dump($_GET);

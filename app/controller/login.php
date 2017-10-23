@@ -10,6 +10,13 @@ class login extends Controller
         }
         require APP.'view/templates/header.php';
         require APP.'view/view.login.php';
+        if(isset($_SESSION['signupsuccess']))
+        {
+            Util::setNotification("Sign Up Successfull! Please login to enter the system!");
+            Util::setNotificationBackground("green");
+            Util::js("notification();");
+            session_destroy();
+        }
         require APP.'view/templates/footer.php';
     }
 
@@ -35,18 +42,32 @@ class login extends Controller
         Util::log($pass);
 
         $db = DBUtil::getInstance();
+        $sql = "SELECT * FROM tbl_admin WHERE admin_email='$user' AND admin_pass='$pass' ;";
 
-        $result = $db->doQuery("SELECT * FROM tbl_admin WHERE admin_email='$user' AND admin_pass='$pass' ;");
+        $result = $db->doQuery($sql);
         if ($result->num_rows > 0)
         {
-            Util::log("User login!");
+            Util::log("Admin login!");
             $_SESSION['user'] = $db->getAllRows()[0]['admin_name'];
-            header("Location: ".Util::php_link("home"));
+            $_SESSION['role'] = 'admin';
+            header("Location: ".Util::php_link("home/admin"));
         } else
         {
-            Util::setNotification("Wrong Username or Password!");
-            Util::setNotificationBackground("darkred");
-            Util::js("notification();");
+            $sql = "SELECT * FROM `tbl_customer` WHERE `customer_email` = '$user' AND `customer_pass` = '$pass';";
+            $result = $db->doQuery($sql);
+            if ($result->num_rows > 0)
+            {
+                Util::log("User login!");
+                $_SESSION['role'] = 'user';
+                $_SESSION['user'] = $db->getAllRows()[0]['customer_name'];
+                header("Location: ".Util::php_link("home"));
+            }
+            else
+            {
+                Util::setNotification("Wrong Username or Password!");
+                Util::setNotificationBackground("darkred");
+                Util::js("notification();");
+            }
 
             require APP.'view/view.login.php';
             require APP.'view/templates/footer.php';

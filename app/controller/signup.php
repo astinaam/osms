@@ -13,28 +13,57 @@ class signup extends  Controller
     {
         if(isset($_POST['submit']))
         {
-            $username = $_POST['username'];
+
             $pass1 = $_POST['password1'];
             $pass2 = $_POST['password2'];
             $contact = $_POST['contact'];
             $address = $_POST['address'];
             $email = $_POST['email'];
             $full_name = $_POST['fname'];
-            Util::log($username);
+            $sex = $_POST['sex'];
             Util::log($email);
             Util::log($contact);
             Util::log($address);
             Util::log($full_name);
+            Util::log($pass1);
+            Util::log($pass2);
             if($pass1 != $pass2)
             {
                 header("Location: ".Util::php_link("signup/passmatch"));
             }
-
+            $sql = "INSERT INTO `tbl_customer` (`customer_id`, `customer_name`, `customer_email`, 
+`customer_pass`, `customer_sex`, `customer_phone`, `customer_address`, `admin_id`) 
+VALUES (NULL, '$full_name', '$email', '$pass2', '$sex', '$contact', '$address', 1);";
+            $con = dbutil::getInstance();
+            $res = $con->doQuery($sql);
+            if(strlen(mysqli_error($con)) == 0)
+            {
+                $_SESSION['signupsuccess'] = 1;
+                header("Location: ".Util::php_link("login"));
+            }
+            else
+            {
+                echo mysqli_error($con);
+            }
         }
-    }
-    public function user_exists()
-    {
 
+    }
+    public function checkEmail($email)
+    {
+        $con = dbutil::getInstance();
+        $res = $con->doQuery("SELECT * FROM tbl_customer WHERE customer_email = '$email'");
+        $ok = true;
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $ok = false;
+        }
+        if($con->getNumRows() <= 0 && $ok ==true)
+        {
+            die('<img src="http://localhost/osms/img/tick.png"/>');
+        }
+        else
+        {
+            die('<img src="http://localhost/osms/img/cross.png"/>');
+        }
     }
     public function passmatch()
     {

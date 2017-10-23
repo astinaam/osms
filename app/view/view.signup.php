@@ -2,14 +2,7 @@
     <div class="row">
         <h2 style="padding-bottom: 30px; text-align: center;">Sign Up</h2>
         <form action="http://localhost/osms/signup/validate" class="form-horizontal" method="post">
-            <div class="col-md-6 col-md-offset-4">
-                <div class="form-inline">
-                    <label class="control-label col-md-4" for="user">Username</label>
-                    <input class="form-control col-md-3" type="text" name="username" id="user" placeholder="username" required>
-                </div>
-            </div>
-            <br>
-            <br>
+
             <div class="col-md-6 col-md-offset-4">
                 <div class="form-inline">
                     <label class="control-label col-md-4" for="fname">Full Name</label>
@@ -17,11 +10,25 @@
                 </div>
             </div>
             <br>
+            <br><div class="col-md-6 col-md-offset-4">
+                <div class="form-inline">
+                    <label class="control-label col-md-4" for="sex">Sex</label>
+                    <select class="form-control col-md-3" name="sex" id="sex"  required>
+                        <option selected disabled value="none">Select Sex</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <br>
             <br>
             <div class="col-md-6 col-md-offset-4">
                 <div class="form-inline">
                     <label class="control-label col-md-4" for="email">Email</label>
-                    <input class="form-control col-md-3" type="text" name="email" id="email" placeholder="Email" required>
+                    <input class="form-control col-md-3" type="text" name="email" id="email" onkeyup="checkEmail(this);"
+                           placeholder="Email" required>
+                    <span id="user_load"></span>
                 </div>
             </div>
             <br>
@@ -53,7 +60,7 @@
             <div class="col-md-6 col-md-offset-4">
                 <div class="form-inline" style="padding-top: 5px !important;" >
                     <label class="control-label col-md-4" for="pass2">Repeat Password</label>
-                    <input class="form-control col-md-3" type="password" name="password1" id="pass2" required>
+                    <input class="form-control col-md-3" type="password" name="password2" id="pass2" required>
                 </div>
             </div>
             <br>
