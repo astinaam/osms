@@ -20,7 +20,7 @@ tr
     border-radius: 7px;
     padding: 6px;
     position: fixed;
-    z-index: 10;
+    z-index: 1000000;
     right: 3%;
     top: 58px;
 }

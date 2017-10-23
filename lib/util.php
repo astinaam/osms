@@ -37,6 +37,7 @@ class Util
     public static function setNotification($val)
     {
         Util::js("document.getElementById('notification').innerHTML='$val';");
+
     }
 }
 

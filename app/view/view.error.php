@@ -11,9 +11,9 @@
     <span style="color:darkred;">404</span>
         Not Found
     </p>
-    <blockquote style="width: 400px; text-align: justify; font-size: 12px;">Please check the url. Either you have error on the url or you don't have the permission to view this page.
+    <blockquote style="width: 400px; text-align: justify; font-size: 12px;">Please check the url. Either you have errors on the url or you don't have the permission to view this page.
         For any query please contact with us. Thanks.</blockquote>
-    <button style=" margin-top: 10px;" type="button" class="btn btn-success">Go to Home</button>
+    <a href="http://localhost/osms/home" style=" margin-top: 10px;" type="button" class="btn btn-success">Go to Home</a>
 </div>
 </body>
 </html>
