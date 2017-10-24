@@ -50,3 +50,10 @@ tr
     from {top: 58px; opacity: 1;}
     to {top: 0; opacity: 0;}
 }
+
+.rgtc
+{
+    position: fixed;
+    top:10px;
+    right:10px;
+}

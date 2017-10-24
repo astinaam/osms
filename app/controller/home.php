@@ -18,7 +18,9 @@
 
         public function admin()
         {
-            echo "admin";
+            require APP.'view/templates/admin_header.php';
+            require APP.'view/templates/admin_body.php';
+            require APP.'view/templates/admin_footer.php';
         }
 
     }

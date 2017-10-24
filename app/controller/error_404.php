@@ -1,5 +1,5 @@
 <?php
-    class Errors
+    class error_404
     {
         public function index()
         {

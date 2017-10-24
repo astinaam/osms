@@ -38,15 +38,15 @@
                         $this->controller->index();
                     }
                     else {
-                        require APP.'controller/error.php';
-                        $this->controller = new $this->controller();
+                        require APP . 'controller/error_404.php';
+                        $this->controller = new error_404();
                         $this->controller->index();
                     }
                 }
             } else {
 
-                require APP.'controller/error.php';
-                $this->controller = new Errors();
+                require APP . 'controller/error_404.php';
+                $this->controller = new error_404();
                 $this->controller->index();
             }
         }

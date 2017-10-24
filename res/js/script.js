@@ -24,10 +24,7 @@ function checkEmail(el) {
     }
 }
 
-
-
 function checkEmailExists(email) {
-    //console.log("Posting.."+email);
     var el = document.getElementById('user_load');
     var address = 'http://localhost/osms/signup/checkEmail/'+email;
     //console.log(address);
@@ -40,4 +37,19 @@ function checkEmailExists(email) {
 function validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
+}
+
+function dismiss(el)
+{
+    el.style.display = 'none';
+}
+
+function makeActive(el) {
+    document.getElementById('1').classList.remove('active');
+    document.getElementById('2').classList.remove('active');
+    document.getElementById('3').classList.remove('active');
+    document.getElementById('4').classList.remove('active');
+    document.getElementById('5').classList.remove('active');
+    document.getElementById('6').classList.remove('active');
+    el.className += " active";
 }

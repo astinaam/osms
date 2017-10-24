@@ -50,7 +50,7 @@ class login extends Controller
             Util::log("Admin login!");
             $_SESSION['user'] = $db->getAllRows()[0]['admin_name'];
             $_SESSION['role'] = 'admin';
-            header("Location: ".Util::php_link("home/admin"));
+            header("Location: ".Util::php_link("admin"));
         } else
         {
             $sql = "SELECT * FROM `tbl_customer` WHERE `customer_email` = '$user' AND `customer_pass` = '$pass';";

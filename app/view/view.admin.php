@@ -16,26 +16,24 @@
     }
 ?>
 
-<div class="container">
-    <div class="row">
-        <div class="table">
-            <div class="table-responsive table-bordered" style="padding: 10px;">
+<section class="row text-center">
+    <div class="table-responsive table-bordered" style="padding: 10px;">
+        <table class="table" style="margin-bottom: 0px !important;">
                 <thead>
-                    <div class="col-md-3">
+<!--                    <div class="col-md-3">-->
                         <th>Product Name</th>
-                    </div>
-                    <div class="col-md-3">
+<!--                    </div>-->
+<!--                    <div class="col-md-3">-->
                         <th>Category</th>
-                    </div>
-                    <div class="col-md-3">
+<!--                    </div>-->
+<!--                    <div class="col-md-3">-->
                         <th>Action</th>
-                    </div>
-                    <div class="col-md-3">
+<!--                    </div>-->
+<!--                    <div class="col-md-3">-->
                         <th>Action</th>
-                    </div>
+<!--                    </div>-->
                 </thead>
-                <br>
-                <hr>
+
 
                 <?php
                     $db = DBUtil::getInstance();
@@ -48,9 +46,9 @@
 
                 <tr>
                     <?php
-                        echo "<div class=\"col-md-3\">";
+//                        echo "<div class=\"col-md-3\">";
                         echo "<td>".$row['product_name']."</td>";
-                        echo "</div>";
+//                        echo "</div>";
                         $cat = $row['category_id'];
                         $val;
                         if($cat == 1)
@@ -69,36 +67,41 @@
                         {
                             $val = "Cooker";
                         }
-                        echo "<div class=\"col-md-3\">";
+                        //echo "<div class=\"col-md-3\">";
                         echo "<td>".$val."</td>";
-                        echo "</div>";
+                       // echo "</div>";
                         ?>
-                        <div class="col-md-3"><td>
-                            <button class="btn btn-toolbar">Update</button>
-                            </td></div>
-                        <div class="col-md-3"><td>
-                            <button class="btn btn-toolbar">Delete</button>
-                            </td></div>
-                </tr><br><br><br><?php
+<!--                        <div class="col-md-3">-->
+                            <td>
+                            <button class="btn btn-info">Update</button>
+                            </td>
+<!--    </div>-->
+<!--                        <div class="col-md-3">-->
+                            <td>
+                            <button class="btn btn-danger">Delete</button>
+                            </td>
+<!--    </div>-->
+                </tr><?php
                     }
                 ?>
 
                 <tr>
 
                 </tr>
-            </div>
-        </div>
+        </table>
     </div>
+    <br>
     <div class="row">
         <div class="col-md-3">
             <div class="area">
-                <a href="<?php echo URL.'/admin/add' ?>"><button class="btn btn-toolbar">Add Product</button></a>
+                <a href="<?php echo URL.'/admin/add' ?>"><button class="btn btn-success">Add Product</button></a>
             </div>
         </div>
         <div class="col-md-3">
             <div class="area">
-                <a href=""><button class="btn btn-toolbar">Add Category</button></a>
+                <a href=""><button class="btn btn-success">Add Category</button></a>
             </div>
         </div>
     </div>
-</div>
+
+</section>
