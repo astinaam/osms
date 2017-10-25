@@ -23,6 +23,7 @@
     include_once  APP.'core/App.php';
     include_once  APP.'core/Route.php';
     include_once APP.'core/Controller.php';
+    include_once APP.'model/product.php';
 
     $app = new App();   //website starts
 

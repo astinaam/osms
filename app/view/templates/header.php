@@ -72,11 +72,29 @@
                                         ?>
                                     </a>
                                     <ul class="dropdown-menu">
+                                        <?php
+                                            if(isset($_SESSION['user']))
+                                            {
+                                                if($_SESSION['role'] == 'admin')
+                                                {
+                                                    ?>
+                                                    <li><a href="http://localhost/osms/admin">Admin Panel</a></li>
+                                                    <li role="separator" class="divider"></li>
+                                                    <li><a href="<?php  Util::link("login/logout"); ?>">Logout</a></li>
+                                                    <?php
+                                                }
+                                                else
+                                                {
+                                                    ?>
                                         <li><a href="#">Profile</a></li>
                                         <li><a href="#">Account Setting</a></li>
                                         <li><a href="#">Orders Log</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="<?php  Util::link("login/logout"); ?>">Logout</a></li>
+                                        <?php
+                                                }
+                                            }
+                                        ?>
                                     </ul>
                                 </li>
                                 <?php

@@ -13,6 +13,7 @@
                 Util::js("notification();");
                 $_SESSION['lsn'] = 1;  //login success notification for only one time
             }
+
             require APP.'view/templates/footer.php';
         }
 
