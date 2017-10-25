@@ -9,6 +9,14 @@
             <div id="active" class="tab-pane fade in active">
                 <table class="table table-striped table-bordered table-hover text-center table-centered"
                        style="margin-bottom: 0px !important; margin-left: 0px; margin-right: 0px !important;">
+                    <?php
+                    $con = dbutil::getInstance();
+                    $cid = $_SESSION['user_id'];
+                    $sql = "SELECT * FROM `tbl_order` WHERE `customer_id` = $cid AND `status` = 0 ORDER BY `tbl_order`.`date_of_order` DESC ";
+                    $res = $con->doQuery($sql);
+                    if($con->getNumRows() > 0)
+                    {
+                    ?>
                     <thead>
                     <th>Product</th>
                     <th>Time</th>
@@ -16,20 +24,16 @@
                     <th>Action</th>
                     </thead>
                     <tbody>
-                <?php
-                    $con = dbutil::getInstance();
-                    $cid = $_SESSION['user_id'];
-                    $sql = "SELECT * FROM `tbl_order` WHERE `customer_id` = $cid AND `status` = 0 ORDER BY `tbl_order`.`date_of_order` DESC ";
-                    $res = $con->doQuery($sql);
+                    <?php
+
                     $rows = $con->getAllRows();
-                    for($i=0;$i<count($rows);$i++)
-                    {
+                    for ($i = 0; $i < count($rows); $i++) {
                         $curr_row = $rows[$i];
                         $t_cost = Products::getPriceById($curr_row['product_id']) * $curr_row['quantity'];
                         ?>
                         <tr>
                             <td>
-                                <a href="<?php Util::link('product/view/'.$curr_row['product_id']); ?>">
+                                <a href="<?php Util::link('product/view/' . $curr_row['product_id']); ?>">
                                     <?php echo Products::getProductNameById($curr_row['product_id']); ?>
                                 </a>
                             </td>
@@ -40,10 +44,13 @@
                                 <?php echo $t_cost; ?>
                             </td>
                             <td>
-                                <a href="<?php Util::link('payment/online/'.$curr_row['order_id']); ?>"><button class="btn btn-success">Pay Online</button></a>
+                                <a href="<?php Util::link('payment/online/' . $curr_row['order_id']); ?>">
+                                    <button class="btn btn-success">Pay Online</button>
+                                </a>
                             </td>
                         </tr>
-                <?php
+                        <?php
+                    }
                     }
                 ?>
                     </tbody>

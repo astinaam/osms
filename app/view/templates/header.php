@@ -89,6 +89,7 @@
                                                     ?>
                                         <li><a href="#">Profile</a></li>
                                         <li><a href="#">Account Setting</a></li>
+                                        <li><a href="<?php Util::link('payment/view'); ?>">My Payments</a></li>
                                         <li><a href="<?php Util::link('order/log'); ?>">Order Log</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="<?php  Util::link("login/logout"); ?>">Logout</a></li>

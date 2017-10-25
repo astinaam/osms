@@ -33,8 +33,11 @@ class payment extends Controller
             $con = dbutil::getInstance();
             $oid = $_POST['order_id'];
             $cost = $_POST['cost'];
-            $sql = "INSERT INTO `tbl_payment` (`payment_id`, `bkash_transaction_No`, `amount`, `order_id`, `admin_id`, `status`) 
-VALUES (NULL, '$transaction_number', $cost , $oid, 1, 0)";
+            $cid = $_SESSION['user_id'];
+            $ctime = date('Y-m-d H:i:s');
+            $sql = "INSERT INTO `tbl_payment` (`payment_id`, `bkash_transaction_No`,`payment_date`, `amount`, `order_id`, `admin_id`,`customer_id`, `status`) 
+VALUES (NULL, '$transaction_number','$ctime', $cost , $oid,1, $cid, 0)";
+//            echo $sql;
             $res = $con->doQuery($sql);
 
             $_SESSION['cart_msg'] = "Payment Added and is left to verify!";
@@ -45,7 +48,20 @@ VALUES (NULL, '$transaction_number', $cost , $oid, 1, 0)";
     }
     public function view()
     {
-
+        Util::route404();
+        require APP.'view/templates/header.php';
+        require APP.'view/view.online_payment.php';
+        if(isset($_SESSION['cart_msg']) && isset($_SESSION['cart_dialog']))
+        {
+            if($_SESSION['cart_dialog'] == 0)
+            {
+                $_SESSION['cart_dialog'] = 1;
+                Util::setNotification($_SESSION['cart_msg']);
+                Util::setNotificationBackground("green");
+                Util::js("notification();");
+            }
+        }
+        require APP.'view/templates/footer.php';
     }
 }
 ?>
