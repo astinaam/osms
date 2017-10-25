@@ -44,7 +44,11 @@
                             <?php echo $total_cost; ?>
                         </td>
                         <td>
-
+                            <a href="<?php Util::link('order/commit/'.$current_row['product_id'].'/'.$qty); ?>">
+                                <button class="btn btn-success">
+                                    Order
+                                </button>
+                            </a>
                         </td>
                     </tr>
         <?php
