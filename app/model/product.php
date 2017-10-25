@@ -59,5 +59,13 @@ class Products
             return 0;
         }
     }
+    public static function getCostByOrderId($oid)
+    {
+        $con = dbutil::getInstance();
+        $res = $con->doQuery("SELECT * FROM `tbl_order` WHERE `order_id` = $oid ;");
+        $row = $con->getTopRow();
+        $t_cost = $row['quantity'] * Products::getPriceById($row['product_id']);
+        return $t_cost;
+    }
 }
 ?>
