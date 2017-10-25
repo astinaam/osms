@@ -67,5 +67,7 @@ class Products
         $t_cost = $row['quantity'] * Products::getPriceById($row['product_id']);
         return $t_cost;
     }
+
+
 }
 ?>

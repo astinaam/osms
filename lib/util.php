@@ -39,6 +39,13 @@ class Util
         Util::js("document.getElementById('notification').innerHTML='$val';");
 
     }
+    public static function route404()
+    {
+        if(!isset($_SESSION['user']))
+        {
+            header('Location: '.Util::php_link('error404'));
+        }
+    }
 }
 
 ?>
