@@ -56,6 +56,15 @@
             {
                 $url = trim($_GET['url'], '/');
                 $url = filter_var($url, FILTER_SANITIZE_URL);
+                if(!isset($_SESSION['current_page']))
+                {
+                    $_SESSION['prev_page'] = Util::php_link('home');
+                }
+                else
+                {
+                    $_SESSION['prev_page'] = $_SESSION['current_page'];
+                }
+                $_SESSION['current_page'] = $url;
                 $url = explode('/', $url);
                 $this->controller = isset($url[0]) ? $url[0] : null;
                 $this->method = isset($url[1]) ? $url[1] : null;

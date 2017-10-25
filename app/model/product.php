@@ -33,7 +33,31 @@ class Products
         $con = dbutil::getInstance();
         $res = $con->doQuery("SELECT * FROM `tbl_products`");
         return $con->getAllRows();
-
+    }
+    public static function getProductNameById($id)
+    {
+        $con = dbutil::getInstance();
+        $res = $con->doQuery("SELECT * FROM `tbl_products` WHERE `tbl_products`.`product_id` = $id ");
+        return $con->getTopRow()['product_name'];
+    }
+    public static function getPriceById($id)
+    {
+        $con = dbutil::getInstance();
+        $res = $con->doQuery("SELECT * FROM `tbl_products` WHERE `tbl_products`.`product_id` = $id ");
+        return $con->getTopRow()['price'];
+    }
+    public static function getQty($cid,$pid)
+    {
+        $con = dbutil::getInstance();
+        $res = $con->doQuery("SELECT * FROM `tbl_shopping_cart` WHERE `customer_id` = $cid AND `product_id` = $pid ;");
+        if($con->getNumRows() > 0)
+        {
+            return $con->getTopRow()['quantity'];
+        }
+        else
+        {
+            return 0;
+        }
     }
 }
 ?>

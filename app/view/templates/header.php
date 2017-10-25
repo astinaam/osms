@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     if (session_status() == PHP_SESSION_NONE)
     {
         session_start();
@@ -55,7 +56,7 @@
                         <button type="submit" class="btn btn-default">Search</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Cart</a></li>
+                        <li><a href="<?php  Util::link("cart"); ?>">Cart</a></li>
                         <?php
                             if(isset($_SESSION['user']))
                             {

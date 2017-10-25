@@ -17,6 +17,16 @@ class login extends Controller
             Util::js("notification();");
             session_destroy();
         }
+        if(isset($_SESSION['cart_msg']) && isset($_SESSION['cart_dialog']))
+        {
+            if($_SESSION['cart_dialog'] == 0)
+            {
+                $_SESSION['cart_dialog'] = 1;
+                Util::setNotification($_SESSION['cart_msg']);
+                Util::setNotificationBackground("green");
+                Util::js("notification();");
+            }
+        }
         require APP.'view/templates/footer.php';
     }
 
@@ -50,6 +60,7 @@ class login extends Controller
             Util::log("Admin login!");
             $_SESSION['user'] = $db->getAllRows()[0]['admin_name'];
             $_SESSION['role'] = 'admin';
+            $_SESSION['user_id'] = $db->getAllRows()[0]['admin_id'];
             header("Location: ".Util::php_link("admin"));
         } else
         {
@@ -57,9 +68,11 @@ class login extends Controller
             $result = $db->doQuery($sql);
             if ($result->num_rows > 0)
             {
+                $contain = $db->getAllRows()[0];
                 Util::log("User login!");
                 $_SESSION['role'] = 'user';
-                $_SESSION['user'] = $db->getAllRows()[0]['customer_name'];
+                $_SESSION['user'] = $contain['customer_name'];
+                $_SESSION['user_id'] = $contain['customer_id'];
                 header("Location: ".Util::php_link("home"));
             }
             else
