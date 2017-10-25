@@ -28,5 +28,12 @@ class Products
         $rows = $con->getAllRows();
         return $rows[0]['category_id'];
     }
+    public static function getProducts()
+    {
+        $con = dbutil::getInstance();
+        $res = $con->doQuery("SELECT * FROM `tbl_products`");
+        return $con->getAllRows();
+
+    }
 }
 ?>
