@@ -44,14 +44,14 @@ class login extends Controller
             require APP.'view/templates/footer.php';
             return;
         }
-
-        $user = $_POST['username'];
-        $pass = $_POST['password'];
+        $db = DBUtil::getInstance();
+        $user = $db->secureInput($_POST['username']);
+        $pass = $db->secureInput($_POST['password']);
 
         Util::log($user);
         Util::log($pass);
 
-        $db = DBUtil::getInstance();
+
         $sql = "SELECT * FROM tbl_admin WHERE admin_email='$user' AND admin_pass='$pass' ;";
 
         $result = $db->doQuery($sql);

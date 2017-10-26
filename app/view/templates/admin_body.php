@@ -17,12 +17,25 @@
                 <li class="nav-item" id="4" onclick="makeActive(this);">
                     <a href="#" class="navlink">Manage Delivery</a>
                 </li>
-            </ul><ul class="nav nav-pills flex-column">
+            </ul>
+
+            <ul class="nav nav-pills flex-column">
                 <li class="nav-item" id="5" onclick="makeActive(this);">
-                    <a href="#" class="navlink">Verify Payments</a>
+                    <a href="<?php Util::link('admin/trans'); ?>" class="navlink">All Payments</a>
                 </li>
-            </ul><ul class="nav nav-pills flex-column">
+            </ul>
+            <ul class="nav nav-pills flex-column">
                 <li class="nav-item" id="6" onclick="makeActive(this);">
+                    <a href="<?php Util::link('admin/aop'); ?>" class="navlink">Add Offline Payments</a>
+                </li>
+            </ul>
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item" id="7" onclick="makeActive(this);">
+                    <a href="<?php Util::link('admin/atn'); ?>" class="navlink">Add Transaction Numbers</a>
+                </li>
+            </ul>
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item" id="8" onclick="makeActive(this);">
                     <a href="http://localhost/osms/login/logout" class="navlink">Log Out</a>
                 </li>
             </ul>

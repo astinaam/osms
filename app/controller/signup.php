@@ -13,14 +13,14 @@ class signup extends  Controller
     {
         if(isset($_POST['submit']))
         {
-
-            $pass1 = $_POST['password1'];
-            $pass2 = $_POST['password2'];
-            $contact = $_POST['contact'];
-            $address = $_POST['address'];
-            $email = $_POST['email'];
-            $full_name = $_POST['fname'];
-            $sex = $_POST['sex'];
+            $con = dbutil::getInstance();
+            $pass1 = $con->secureInput($_POST['password1']);
+            $pass2 = $con->secureInput($_POST['password2']);
+            $contact = $con->secureInput($_POST['contact']);
+            $address = $con->secureInput($_POST['address']);
+            $email = $con->secureInput($_POST['email']);
+            $full_name = $con->secureInput($_POST['fname']);
+            $sex = $con->secureInput($_POST['sex']);
             Util::log($email);
             Util::log($contact);
             Util::log($address);
@@ -34,7 +34,7 @@ class signup extends  Controller
             $sql = "INSERT INTO `tbl_customer` (`customer_id`, `customer_name`, `customer_email`, 
 `customer_pass`, `customer_sex`, `customer_phone`, `customer_address`, `admin_id`) 
 VALUES (NULL, '$full_name', '$email', '$pass2', '$sex', '$contact', '$address', 1);";
-            $con = dbutil::getInstance();
+
             $res = $con->doQuery($sql);
             if(strlen(mysqli_error($con)) == 0)
             {

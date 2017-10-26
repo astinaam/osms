@@ -52,6 +52,7 @@
 
         public function delete($id)
         {
+            Util::admin404();
             $sql = "DELETE FROM `tbl_products` WHERE `tbl_products`.`product_id` = $id";
             $con = dbutil::getInstance();
             $res = $con->doQuery($sql);
@@ -60,6 +61,7 @@
 
         public function updateView($id)
         {
+            Util::admin404();
             require APP.'view/templates/admin_header.php';
             require APP.'view/templates/admin_body.php';
             $con = dbutil::getInstance();
@@ -153,6 +155,7 @@
 
         public function update()
         {
+            Util::admin404();
             require APP.'view/templates/admin_header.php';
             require APP.'view/templates/admin_body.php';
 
@@ -192,6 +195,7 @@
 
         public function add()
         {
+            Util::admin404();
             require APP.'view/templates/admin_header.php';
             require APP.'view/templates/admin_body.php';
             if(isset($_POST['add_product']))
@@ -221,6 +225,76 @@ VALUES (NULL, '$pname', '$war', $stock, $price, $catid, NULL, '$des', '$fet', 1,
                 $con = dbutil::getInstance();
                 $res = $con->doQuery($sql);
             }
+            require APP.'view/templates/admin_footer.php';
+        }
+
+        public function aop()   //add offline payments
+        {
+            Util::admin404();
+            require APP.'view/templates/admin_header.php';
+            require APP.'view/templates/admin_body.php';
+            require APP.'view/templates/admin_footer.php';
+        }
+        public function atn() //add transaction numbers that customers cashed out
+        {
+            Util::admin404();
+            require APP.'view/templates/admin_header.php';
+            require APP.'view/templates/admin_body.php';
+            $con = dbutil::getInstance();
+            if(isset($_POST['tran']))
+            {
+                $tran = $con->secureInput($_POST['tn']);
+                $res = $con->doQuery("SELECT * FROM `tbl_transaction_numbers` WHERE `transaction_number` = '$tran' AND `status` = 0 ;");
+                if($con->getNumRows() > 0)
+                {
+                    $_SESSION['cart_msg'] = "This transaction Number is Already Added.";
+                    $_SESSION['cart_dialog'] = 0;
+                }
+                else
+                {
+                    $res = $con->doQuery("SELECT * FROM `tbl_transaction_numbers` WHERE `transaction_number` = '$tran' AND `status` = 1 ;");
+                    if($con->getNumRows() > 0)
+                    {
+                        $_SESSION['cart_msg'] = "This transaction Number is Already Verified.";
+                        $_SESSION['cart_dialog'] = 0;
+                    }
+                    else
+                    {
+                        $date_added = date('Y-m-d H:i:s');
+                        $res = $con->doQuery("INSERT INTO `tbl_transaction_numbers` (`id`, `transaction_number`, `date_added`, `status` , `admin_id`) 
+VALUES (NULL, '$tran', '$date_added',0, 1);");
+                        $_SESSION['cart_msg'] = "Adding Successful.";
+                        $_SESSION['cart_dialog'] = 0;
+                    }
+                }
+            }
+            require APP.'view/view.atn.php';
+
+            if(isset($_SESSION['cart_msg']) && isset($_SESSION['cart_dialog']))
+            {
+                if($_SESSION['cart_dialog'] == 0)
+                {
+                    $_SESSION['cart_dialog'] = 1;
+                    Util::setNotification($_SESSION['cart_msg']);
+                    Util::setNotificationBackground("green");
+                    Util::js("notification();");
+                }
+            }
+            require APP.'view/templates/admin_footer.php';
+        }
+        public function trans()
+        {
+            Util::admin404();
+            require APP.'view/templates/admin_header.php';
+            require APP.'view/templates/admin_body.php';
+            require APP.'view/view.all_transaction.php';
+            require APP.'view/templates/admin_footer.php';
+        }
+        public function verified()
+        {
+            Util::admin404();
+            require APP.'view/templates/admin_header.php';
+            require APP.'view/templates/admin_body.php';
             require APP.'view/templates/admin_footer.php';
         }
     }

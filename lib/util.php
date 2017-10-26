@@ -46,6 +46,21 @@ class Util
             header('Location: '.Util::php_link('error404'));
         }
     }
+
+    public static function admin404()
+    {
+        if(!isset($_SESSION['user']))
+        {
+            header('Location: '.Util::php_link('error404'));
+        }
+        else
+        {
+            if($_SESSION['role'] != 'admin')
+            {
+                header('Location: '.Util::php_link('error404'));
+            }
+        }
+    }
 }
 
 ?>

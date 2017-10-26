@@ -10,6 +10,7 @@
         {
 
             $this->parseURL();
+            $this->auto_verify();
 //            var_dump($this->controller);
 //            var_dump($_GET);
             if(!$this->controller)
@@ -71,6 +72,38 @@
                 unset($url[0], $url[1]);
 
                 $this->params = array_values($url);
+            }
+        }
+
+        public function auto_verify()
+        {
+            $con = dbutil::getInstance();
+            $res = $con->doQuery("SELECT * FROM `tbl_transaction_numbers` WHERE `status` = 0 ;");
+            if($con->getNumRows() > 0)
+            {
+                $rows = $con->getAllRows();
+                for($i=0;$i<count($rows);$i++)
+                {
+                    $curr_row = $rows[$i];
+                    $tran = $curr_row['transaction_number'];
+                    $sql = "SELECT * FROM `tbl_payment` WHERE `bkash_transaction_No` = '$tran' AND `status` = 0 ;";
+                    $res = $con->doQuery($sql);
+                    if($con->getNumRows() > 0)
+                    {
+                        $row = $con->getTopRow();
+                        $oid = $row['order_id'];
+                        $pid = $row['payment_id'];
+                        $sql = "UPDATE `tbl_order` SET `status` = 1 WHERE `tbl_order`.`order_id` = $oid ;";
+                        $res = $con->doQuery($sql);
+
+                        $sql = "UPDATE `tbl_payment` SET `status` = 1 WHERE `tbl_payment`.`payment_id` = $pid ;";
+                        $res = $con->doQuery($sql);
+
+                        $sql = "UPDATE `tbl_transaction_numbers` SET `status` = '1' WHERE `tbl_transaction_numbers`.`transaction_number` = '$tran';";
+                        $res = $con->doQuery($sql);
+                    }
+
+                }
             }
         }
     }

@@ -14,9 +14,10 @@
             <?php
                 if(isset($_SESSION['user']))
                 {
-                    echo "<button class='rgtc btn-success'>".$_SESSION['user']."</button>";
+                    echo "<button class='rgtc btn btn-success'>".$_SESSION['user']."</button>";
                 }
             ?>
         </span>
     </header>
+    <div id="notification">A simple Notification</div>
 <body>
