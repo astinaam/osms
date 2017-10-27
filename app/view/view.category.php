@@ -8,7 +8,7 @@
             ?>
             <div class="col-md-4">
                 <div class="thumbnail">
-                    <img src="<?php Util::php_link('uploads/'.$product['product_image']); ?>" alt="" class="img-responsive">
+                    <img src="<?php Util::link('uploads/'.$product['product_image']); ?>" alt="" class="img-responsive">
                     <div class="caption">
                         <h4 class="pull-right">TK.<?php echo ' '.$product['price']; ?></h4>
                         <h4><a href="#"><?php echo $product['product_name']; ?></a></h4>

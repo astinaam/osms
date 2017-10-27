@@ -11,6 +11,10 @@ class category extends Controller
         require APP.'view/view.category.php';
         require APP.'view/templates/footer.php';
     }
+    public function search()
+    {
+
+    }
 }
 
 ?>

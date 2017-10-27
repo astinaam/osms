@@ -1,26 +1,12 @@
-<!--Not using anymore-->
-<div class="container">
-    <div class="row">
-        <?php
-        if($this->searched != null)
-        {
-            $price_min = 0;
-            $price_max = 999999999999;
-            $name = "";
-            if($this->name != null) {
-                $name = $this->name;
-            }
-            if($this->min_price != null){
-                $price_min = $this->min_price;
-            }
-            if($this->max_price != null){
-                $price_max = $this->max_price;
-            }
-            $sql = "SELECT * FROM `tbl_products` WHERE `product_name` LIKE '%$name%' AND `price` <= $price_max AND `price` >= $price_min ";
-            //var_dump($sql);
-        }
-        else {
+<div id="ajax-add">
+    <div class="container">
+        <div class="row">
+            <?php
             $products = Products::getProducts();
+            if($this->products != null)
+            {
+                $products = $this->products;
+            }
             for ($i = 0; $i < count($products); $i++) {
                 $product = $products[$i];
                 ?>
@@ -50,9 +36,8 @@
                 </div>
                 <?php
             }
-        }
-        ?>
+
+            ?>
+        </div>
     </div>
 </div>
-
-
