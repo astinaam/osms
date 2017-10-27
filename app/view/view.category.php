@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <?php
-        $products = Products::getProducts();
+        $products = Products::getProductsByCategoryId($this->category_id);
         for($i=0;$i<count($products);$i++)
         {
             $product = $products[$i];
@@ -27,5 +27,3 @@
         ?>
     </div>
 </div>
-
-

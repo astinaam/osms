@@ -22,6 +22,13 @@ class Products
         return $rows;
     }
 
+    public static function getProductsByCategoryId($cid)
+    {
+        $con = dbutil::getInstance();
+        $res = $con->doQuery("SELECT * FROM `tbl_products` WHERE `category_id` = $cid ;");
+        return $con->getAllRows();
+    }
+
     public static function getCategoryById($val)
     {
         $con = dbutil::getInstance();
