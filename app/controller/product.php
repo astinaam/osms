@@ -13,7 +13,7 @@ class product
         require APP.'view/templates/header.php';
         echo '<div class="row">
                     <div class="col-md-5 product_img">
-                        <img src="'.'http://localhost/osms/uploads/'.$pdct['product_image'].'" class="img-responsive">
+                        <img src="'.'http://localhost/osms/uploads/'.$pdct['product_image'].'" class="img-responsive center-block">
                     </div>';
         echo '<form action="http://localhost/osms/cart/add/'.$pdct['product_id'].'" method="post">
                     <div class="col-md-6 product_content">
@@ -73,7 +73,7 @@ class product
     public function cat($cid)
     {
         require APP.'view/templates/header.php';
-        
+
         require APP.'view/templates/footer.php';
     }
 }

@@ -35,10 +35,18 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Tv</a></li>
-                                <li><a href="#">Refrigerator</a></li>
-                                <li><a href="#">Fan</a></li>
-                                <li><a href="#">Cooker</a></li>
+                                <?php
+                                    $category_list = Products::getCategoryAndId();
+//                                    var_dump($category_list);
+                                    for($i=0;$i<count($category_list);$i++)
+                                    {
+                                        $category = $category_list[$i];
+
+                                        ?>
+                                        <li><a href="<?php Util::link('category/view/'.$category['category_id']); ?>"><?php echo $category['category_name']; ?></a></li>
+                                <?php
+                                    }
+                                ?>
 <!--                                <li role="separator" class="divider"></li>-->
 <!--                                <li><a href="#">Separated link</a></li>-->
 <!--                                <li role="separator" class="divider"></li>-->

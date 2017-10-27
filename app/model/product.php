@@ -13,12 +13,21 @@ class Products
         }
         return $ret;
     }
+
+    public static function getCategoryAndId()
+    {
+        $con = dbutil::getInstance();
+        $res = $con->doQuery("SELECT * FROM `tbl_category` ;");
+        $rows = $con->getAllRows();
+        return $rows;
+    }
+
     public static function getCategoryById($val)
     {
         $con = dbutil::getInstance();
         $res = $con->doQuery("SELECT * FROM `tbl_category` WHERE `category_id` = $val ;");
-        $rows = $con->getAllRows();
-        return $rows[0]['category_name'];
+        $rows = $con->getTopRow();
+        return $rows['category_name'];
 
     }
     public static function getCatId($val)

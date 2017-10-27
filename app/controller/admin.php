@@ -213,6 +213,7 @@
 //                var_dump($_POST);
                 $tfile = $tfile.'.'.$imageFileType;
                 $link = $pname."+".$cat.'.'.$imageFileType;
+//                var_dump($link);
                 if (move_uploaded_file($_FILES["imagefile"]["tmp_name"], $tfile)) {
                     Util::log("Uploaded");
                 } else {
