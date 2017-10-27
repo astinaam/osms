@@ -23,7 +23,8 @@
             $cnt = 0;
         ?>
         <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel">
-            <div class="item-active">
+            <div class="carousel-inner">
+            <div class="item active">
                 <div class="row">
                 <?php
                     for($i=0;$i<count($products);$i++)

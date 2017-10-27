@@ -92,3 +92,7 @@ function search_by_cat(el) {
         replace.innerHTML = html;
     });
 }
+//
+// $('.carousel').carousel({
+//     interval: 2000
+// });
