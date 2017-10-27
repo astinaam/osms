@@ -21,7 +21,10 @@ class cart
     {
         if(!isset($_SESSION['user']))
         {
-            header("Location: ".Util::php_link('error_404/guest'));
+            //header("Location: ".Util::php_link('error_404/guest'));
+            $_SESSION['cart_msg'] = "Please login to add products to cart.";
+            $_SESSION['cart_dialog'] = 0;
+            header("Location: ".Util::php_link('login'));
         }
         require APP.'view/templates/header.php';
         $cnt = 1;

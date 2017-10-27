@@ -1,13 +1,13 @@
 <div class="container" style="font-family: Roboto;">
     <div class="row center-block">
-        <img class="img-responsive" src="<?php Util::link('img/slider2.jpg') ?>" alt="Unitech">
+        <img  class="img-responsive" src="<?php Util::link('img/slider2.jpg') ?>" alt="Unitech">
     </div>
     <div class="row center-block">
         <div class="row">
             <div class="col-md-9">
                 <h3>Our Products</h3>
             </div>
-            <div class="col-md-3" style="padding-top: 24px;">
+            <div class="col-md-3" style="padding-top: 7px;">
                 <div class="controls pull-right hidden-xs">
                     <a class="left fa fa-arrow-left" href="#carousel-example" data-slide="prev">
                         &nbsp;
@@ -18,7 +18,70 @@
                 </div>
             </div>
         </div>
+        <?php
+            $products = Products::getProducts();
+            $cnt = 0;
+        ?>
+        <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel">
+            <div class="item-active">
+                <div class="row">
+                <?php
+                    for($i=0;$i<count($products);$i++)
+                    {
+                        $product = $products[$i];
+                        if($i < 3)
+                        {
+                            ?>
+                    <div class="col-md-4">
+                        <div class="col-item">
+                            <div class="photo">
+                                <img style="height: 260px !important;" src="<?php Util::link('uploads/'.$product['product_image']); ?>"
+                                     class="img-responsive" alt="">
+                            </div>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="price col-md-8">
+                                        <h5>
+                                            <?php echo $product['product_name']; ?>
+                                        </h5>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5 class="price-text-color pull-right">
+                                            TK.&nbsp; <?php echo $product['price']; ?>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="des">
+                                    <p><?php echo $product['description']; ?></p>
+                                </div>
+                                <div class="separator clear-left">
+                                    <p class="btn-add">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <a href="<?php Util::link('cart/add/'.$product['product_id']); ?>" class="hidden-sm">Add to cart</a>
+                                    </p>
+                                    <p class="btn-details">
+                                        <i class="fa fa-list"></i>
+                                        <a href="<?php Util::link('product/view/'.$product['product_id']); ?>" class="hidden-sm">More details</a>
+                                    </p>
+                                </div>
+                                <div class="clearfix">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                ?>
+                </div>
+            </div>
+        </div>
     </div>
+    <br><br>
     <div class="row">
         <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
             <div class="text-justify text-border" >

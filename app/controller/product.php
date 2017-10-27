@@ -73,7 +73,6 @@ class product
     public function cat($cid)
     {
         require APP.'view/templates/header.php';
-
         require APP.'view/templates/footer.php';
     }
 }
