@@ -58,12 +58,7 @@
 
                         <li><a href="#">Contact</a></li>
                     </ul>
-                    <form class="navbar-form navbar-left">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Search</button>
-                    </form>
+
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="<?php  Util::link("cart"); ?>">Cart</a></li>
                         <?php
