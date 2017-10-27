@@ -56,7 +56,7 @@
                         <li><a href="<?php Util::link('shop'); ?>">Shop</a></li>
                         <li><a href="<?php Util::link('about') ?>">About Us</a></li>
 
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="<?php Util::link('contact') ?>">Contact</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
