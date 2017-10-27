@@ -2,6 +2,23 @@
     <div class="row center-block">
         <img class="img-responsive" src="<?php Util::link('img/slider2.jpg') ?>" alt="Unitech">
     </div>
+    <div class="row center-block">
+        <div class="row">
+            <div class="col-md-9">
+                <h3>Our Products</h3>
+            </div>
+            <div class="col-md-3" style="padding-top: 24px;">
+                <div class="controls pull-right hidden-xs">
+                    <a class="left fa fa-arrow-left" href="#carousel-example" data-slide="prev">
+                        &nbsp;
+                    </a>
+                    <a class="right fa fa-arrow-right" href="#carousel-example" data-slide="next">
+                        &nbsp;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
             <div class="text-justify text-border" >
