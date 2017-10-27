@@ -26,7 +26,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand title" href="<?php Util::link("home"); ?>">Unitech</a>
+                    <a class="navbar-brand title" href="<?php Util::link("home"); ?>">
+                        <img class="logo" src="<?php Util::link('img/logo.jpg'); ?>" alt="Unitech Products Limited">
+                    </a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
