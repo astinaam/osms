@@ -17,13 +17,6 @@
             require APP.'view/templates/footer.php';
         }
 
-        public function admin()
-        {
-            require APP.'view/templates/admin_header.php';
-            require APP.'view/templates/admin_body.php';
-            require APP.'view/templates/admin_footer.php';
-        }
-
     }
 
 ?>
