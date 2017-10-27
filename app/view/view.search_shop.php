@@ -1,18 +1,26 @@
 <div id="ajax-add">
     <div class="container">
-        <div class="row">
+
             <?php
             $products = Products::getProducts();
+            $cnt = 0;
+            $first = 0;
             if($this->products != null)
             {
                 $products = $this->products;
             }
             for ($i = 0; $i < count($products); $i++) {
                 $product = $products[$i];
+                if($cnt == 3 || $first == 0)
+                {
+                    $cnt = 0;
+                    $first = 1;
+                    echo "<div class=\"row\">";
+                }
                 ?>
                 <div class="col-md-4">
                     <div class="thumbnail">
-                        <img src="<?php Util::link('uploads/' . $product['product_image']); ?>" alt=""
+                        <img style="height: 260px;" src="<?php Util::link('uploads/' . $product['product_image']); ?>" alt=""
                              class="img-responsive">
                         <div class="caption">
                             <h4 class="pull-right">TK.<?php echo ' ' . $product['price']; ?></h4>
@@ -35,6 +43,12 @@
                     </div>
                 </div>
                 <?php
+
+                if($cnt==2)
+                {
+                    echo "</div>";
+                }
+                $cnt++;
             }
 
             ?>

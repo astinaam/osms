@@ -79,6 +79,64 @@
                 ?>
                 </div>
             </div>
+            <?php
+                $first = 0;
+                for($i=3;$i<count($products);$i++)
+                {
+                    $product = $products[$i];
+                    if($cnt == 3 || $first == 0)
+                    {
+                        $first = 1;
+                        $cnt = 0;
+                        echo "<div class=\"item\">
+                    <div class=\"row\">";
+                    }
+                    ?>
+                    <div class="col-md-4">
+                        <div class="col-item">
+                            <div class="photo">
+                                <img style="height: 260px !important;" src="<?php Util::link('uploads/'.$product['product_image']); ?>"
+                                     class="img-responsive" alt="">
+                            </div>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="price col-md-8">
+                                        <h5>
+                                            <?php echo $product['product_name']; ?>
+                                        </h5>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5 class="price-text-color pull-right">
+                                            TK.&nbsp; <?php echo $product['price']; ?>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="des">
+                                    <p><?php echo $product['description']; ?></p>
+                                </div>
+                                <div class="separator clear-left">
+                                    <p class="btn-add">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <a href="<?php Util::link('cart/add/'.$product['product_id']); ?>" class="hidden-sm">Add to cart</a>
+                                    </p>
+                                    <p class="btn-details">
+                                        <i class="fa fa-list"></i>
+                                        <a href="<?php Util::link('product/view/'.$product['product_id']); ?>" class="hidden-sm">More details</a>
+                                    </p>
+                                </div>
+                                <div class="clearfix">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <?php
+                    if($cnt == 2)
+                    {
+                        echo "</div></div>";
+                    }
+                    $cnt++;
+                }
+            ?>
         </div>
     </div>
     <br><br>
