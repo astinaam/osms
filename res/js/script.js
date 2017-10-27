@@ -75,19 +75,20 @@ function search_in_shop(el) {
 
 function search_by_cat(el) {
     var search_form = document.getElementById('search_form');
-    var turl = 'http://localhost/osms/shop/search';
+    var turl = 'http://localhost/osms/category/search';
     var name = document.getElementById('p_name').value;
     var pmin = document.getElementById('pmin').value;
     var pmax = document.getElementById('pmax').value;
     var replace = document.getElementById('ajax-add');
-    //console.log(name);
-    //console.log(pmin);
-    //console.log(pmax);
+    // console.log(name);
+    // console.log(pmin);
+    // console.log(pmax);
     $.ajax({
         method:"POST",
         url: turl,
         data:{name:name,max_price:pmax,min_price:pmin}
     }).done(function (html) {
+        // console.log(html);
         replace.innerHTML = html;
     });
 }

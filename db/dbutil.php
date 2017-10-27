@@ -55,7 +55,13 @@ class DBUtil {
 
         $this->_result = $this->_connection->query($sql) or die(mysqli_error($this->_connection));
         return $this->_result;
+    }
 
+    public function noQuery($sql) {
+
+        $this->_result = $this->_connection->query($sql) or die(mysqli_error($this->_connection));
+//        var_dump(mysqli_error($this->_connection));
+        return $this->_result;
     }
 
     public function getNumRows() {

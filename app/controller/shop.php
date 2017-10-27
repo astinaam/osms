@@ -13,7 +13,6 @@ class shop extends Controller
     {
         require APP.'view/templates/header.php';
         require APP.'view/view.search.php';
-//        require APP.'view/view.shop.php';
 
         if(isset($_SESSION['cart_msg']) && isset($_SESSION['cart_dialog']))
         {
@@ -72,7 +71,6 @@ class shop extends Controller
         }
         $this->getProducts();
         require APP.'view/view.search_shop.php';
-//        header("Location: ".Util::php_link('shop'));
     }
 
     public function getProducts()
