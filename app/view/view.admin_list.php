@@ -1,4 +1,16 @@
-
+<div class="row">
+    <div class="col-md-3">
+        <div class="area">
+            <button data-toggle="modal" data-target="#add_product" class="btn btn-success">Add Product</button>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="area">
+            <a href="<?php Util::link('admin/addCategory'); ?>"><button class="btn btn-success">Add Category</button></a>
+        </div>
+    </div>
+</div>
+<br>
 <section class="row text-center">
     <div class="table-responsive table-bordered" style="padding: 10px;">
         <table class="table" style="margin-bottom: 0px !important;">

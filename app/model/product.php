@@ -50,6 +50,12 @@ class Products
         $res = $con->doQuery("SELECT * FROM `tbl_products` WHERE `stock_available` > 0 ;");
         return $con->getAllRows();
     }
+    public static function getProductsOutOfStock()
+    {
+        $con = dbutil::getInstance();
+        $res = $con->doQuery("SELECT * FROM `tbl_products` WHERE `stock_available` = 0 ;");
+        return $con->getAllRows();
+    }
     public static function getProductNameById($id)
     {
         $con = dbutil::getInstance();

@@ -22,7 +22,14 @@
             }
         }
 
-
+        public function out_of_stock()
+        {
+            Util::admin404();
+            require APP.'view/templates/admin_header.php';
+            require APP.'view/templates/admin_body.php';
+            require APP.'view/view.out_of_stock.php';
+            require APP.'view/templates/admin_footer.php';
+        }
 
         public function addCategory()
         {
