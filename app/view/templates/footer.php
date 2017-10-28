@@ -1,5 +1,7 @@
 <!--<footer>Copyright @Unitech</footer>-->
-<footer style="position: relative; bottom: 0px; width: 100%; height:50px;
+
+</body>
+<footer style="padding-left: 0px !important; padding-right: 0px !important; bottom: 0px; width: 100%; height:50px;
 background: linear-gradient(-315deg,#00C04A,darkolivegreen); margin-top: 50px; color: white; font-weight: bold;">
     <div class="text-center " style="padding-top: 15px;">
         <p>
@@ -7,5 +9,4 @@ background: linear-gradient(-315deg,#00C04A,darkolivegreen); margin-top: 50px; c
         </p>
     </div>
 </footer>
-</body>
 </html>

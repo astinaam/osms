@@ -76,7 +76,7 @@ class category extends Controller
         if($this->max_price != null){
             $price_max = $this->max_price;
         }
-        $sql = "SELECT * FROM `tbl_products` WHERE `category_id` = $cat_id";
+        $sql = "SELECT * FROM `tbl_products` WHERE `category_id` = $cat_id AND `stock_available` > 0";
         $sql = $sql." AND `price` <= $price_max AND `price` >= $price_min";
         $sql = $sql." AND `product_name` LIKE '%".$name."%'";
 

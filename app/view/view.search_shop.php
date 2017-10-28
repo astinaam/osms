@@ -2,12 +2,16 @@
     <div class="container">
 
             <?php
-            $products = Products::getProducts();
+            $products;
             $cnt = 0;
             $first = 0;
-            if($this->products != null)
+            if($this->searched != null)
             {
                 $products = $this->products;
+            }
+            else
+            {
+                $products = Products::getProducts();
             }
             for ($i = 0; $i < count($products); $i++) {
                 $product = $products[$i];

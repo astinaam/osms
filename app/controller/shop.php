@@ -87,7 +87,7 @@ class shop extends Controller
         if($this->max_price != null){
             $price_max = $this->max_price;
         }
-        $sql = "SELECT * FROM `tbl_products` WHERE `product_name` LIKE '%$name%' AND `price` <= $price_max AND `price` >= $price_min ";
+        $sql = "SELECT * FROM `tbl_products` WHERE `product_name` LIKE '%$name%' AND `price` <= $price_max AND `price` >= $price_min AND `stock_available` > 0 ";
         $res = $this->con->doQuery($sql);
         $this->products = $this->con->getAllRows();
     }

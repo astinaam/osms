@@ -10,7 +10,7 @@
     <head>
         <title>Unitech Online Shop Management System</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="http://localhost/osms/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://localhost/osms/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="http://localhost/osms/css/style.css">
         <link rel="stylesheet" href="http://localhost/osms/font-awesome/css/font-awesome.css">
         <script src="http://localhost/osms/js/jquery-3.2.1.min.js" ></script>
@@ -19,7 +19,7 @@
     </head>
     <header id="header">
         <nav class="navbar navbar-default">
-            <div class="container-fluid">
+            <div class="containers" style="padding-left: 0px !important; padding-right: 0px !important;">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>

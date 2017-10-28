@@ -25,7 +25,7 @@ class Products
     public static function getProductsByCategoryId($cid)
     {
         $con = dbutil::getInstance();
-        $res = $con->doQuery("SELECT * FROM `tbl_products` WHERE `category_id` = $cid ;");
+        $res = $con->doQuery("SELECT * FROM `tbl_products` WHERE `category_id` = $cid AND `stock_available` > 0 ;");
         return $con->getAllRows();
     }
 
@@ -47,7 +47,7 @@ class Products
     public static function getProducts()
     {
         $con = dbutil::getInstance();
-        $res = $con->doQuery("SELECT * FROM `tbl_products`");
+        $res = $con->doQuery("SELECT * FROM `tbl_products` WHERE `stock_available` > 0 ;");
         return $con->getAllRows();
     }
     public static function getProductNameById($id)

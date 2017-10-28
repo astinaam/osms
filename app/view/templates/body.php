@@ -1,4 +1,4 @@
-<div class="container" style="font-family: Roboto;">
+<div class="container" style="font-family: Roboto; padding-left: 50px; padding-right: 50px;">
     <div class="row center-block">
         <img  class="img-responsive" src="<?php Util::link('img/slider2.jpg') ?>" alt="Unitech">
     </div>
