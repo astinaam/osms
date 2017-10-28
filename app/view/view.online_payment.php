@@ -18,6 +18,7 @@
                     {
                     ?>
                     <thead>
+                    <th>Order</th>
                     <th>Time of Payment</th>
                     <th>Amount</th>
                     <th>Transaction Number</th>
@@ -30,6 +31,9 @@
                         $curr_row = $rows[$i];
                         ?>
                         <tr>
+                            <td>
+                                <a href="<?php Util::link('product/view/'.Products::getProductIdByOrderId($curr_row['order_id'])); ?>"> <?php echo $curr_row['order_id']; ?> </a>
+                            </td>
                             <td>
                                 <?php echo $curr_row['payment_date']; ?>
                             </td>
@@ -60,6 +64,7 @@
                     {
                     ?>
                     <thead>
+                    <th>Order</th>
                     <th>Time of Payment</th>
                     <th>Amount</th>
                     <th>Transaction Number</th>
@@ -73,6 +78,9 @@
 //                        $t_cost = Products::getPriceById($curr_row['product_id']) * $curr_row['quantity'];
                         ?>
                         <tr>
+                            <td>
+                                <a href="<?php Util::link('product/view/'.Products::getProductIdByOrderId($curr_row['order_id'])); ?>"> <?php echo $curr_row['order_id']; ?> </a>
+                            </td>
                             <td>
                                 <?php echo $curr_row['payment_date']; ?>
                             </td>

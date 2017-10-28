@@ -106,6 +106,12 @@ class Products
         $row = $con->getTopRow();
         return $row['customer_name'];
     }
-
+    public static function getProductIdByOrderId($id)
+    {
+        $con = dbutil::getInstance();
+        $res = $con->doQuery("SELECT * FROM `tbl_order` WHERE `order_id` = $id ;");
+        $row = $con->getTopRow();
+        return $row['product_id'];
+    }
 }
 ?>

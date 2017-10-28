@@ -94,8 +94,7 @@
                                                 else
                                                 {
                                                     ?>
-                                        <li><a href="#">Profile</a></li>
-                                        <li><a href="#">Account Setting</a></li>
+                                        <li><a href="<?php Util::link('customer/view/'.$_SESSION['user_id']); ?>">Profile</a></li>
                                         <li><a href="<?php Util::link('payment/view'); ?>">My Payments</a></li>
                                         <li><a href="<?php Util::link('order/log'); ?>">Order Log</a></li>
                                         <li role="separator" class="divider"></li>
