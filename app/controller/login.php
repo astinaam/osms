@@ -52,15 +52,16 @@ class login extends Controller
         Util::log($pass);
 
 
-        $sql = "SELECT * FROM tbl_admin WHERE admin_email='$user' AND admin_pass='$pass' ;";
+        $sql = "SELECT * FROM `tbl_admin` WHERE `admin_email` ='$user' AND `admin_pass` = '$pass' ;";
 
         $result = $db->doQuery($sql);
         if ($result->num_rows > 0)
         {
             Util::log("Admin login!");
-            $_SESSION['user'] = $db->getAllRows()[0]['admin_name'];
+            $row = $db->getAllRows();
+            $_SESSION['user'] = $row[0]['admin_name'];
             $_SESSION['role'] = 'admin';
-            $_SESSION['user_id'] = $db->getAllRows()[0]['admin_id'];
+            $_SESSION['user_id'] = $row[0]['admin_id'];
             header("Location: ".Util::php_link("admin"));
         } else
         {

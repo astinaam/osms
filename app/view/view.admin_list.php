@@ -87,7 +87,7 @@
         </div>
         <div class="col-md-3">
             <div class="area">
-                <a href=""><button class="btn btn-success">Add Category</button></a>
+                <a href="<?php Util::link('admin/addCategory'); ?>"><button class="btn btn-success">Add Category</button></a>
             </div>
         </div>
     </div>
