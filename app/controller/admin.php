@@ -32,9 +32,9 @@
                 $con = dbutil::getInstance();
                 $new_cat = $con->secureInput($_POST['cname']);
                 $sql = "SELECT * FROM `tbl_category` WHERE `category_name` = '%$new_cat%';";
-                echo $sql;
+//                echo $sql;
                 $res = $con->doQuery($sql);
-                var_dump($_SESSION);
+//                var_dump($_SESSION);
                 if($con->getNumRows() > 0)
                 {
                     $_SESSION['cart_msg'] = "Ignored!! Category Exists!";
@@ -46,13 +46,53 @@
                     $_SESSION['cart_dialog'] = 0;
                     $admin_id = $_SESSION['user_id'];
                     $sql = "INSERT INTO `tbl_category` (`category_id`, `category_name`, `admin_id`) VALUES (NULL, '$new_cat', $admin_id)";
-                    var_dump($sql);
+//                    var_dump($sql);
                     $res = $con->doQuery($sql);
                 }
             }
             require APP.'view/templates/admin_header.php';
             require APP.'view/templates/admin_body.php';
             require APP.'view/view.add_category.php';
+            if(isset($_SESSION['cart_msg']) && isset($_SESSION['cart_dialog']))
+            {
+                if($_SESSION['cart_dialog'] == 0)
+                {
+                    $_SESSION['cart_dialog'] = 1;
+                    Util::setNotification($_SESSION['cart_msg']);
+                    Util::setNotificationBackground("green");
+                    Util::js("notification();");
+                }
+            }
+            require APP.'view/templates/admin_footer.php';
+        }
+
+        public function editCategory()
+        {
+            Util::admin404();
+            if(isset($_POST['submit']))
+            {
+                $con = dbutil::getInstance();
+                $new_cat = $con->secureInput($_POST['new_cat']);
+                $cid = $con->secureInput($_POST['clist']);
+                $sql = "UPDATE `tbl_category` SET `category_name` = '$new_cat' WHERE `tbl_category`.`category_id` = $cid;";
+                $res = $con->doQuery($sql);
+                $_SESSION['cart_msg'] = "Category Name Updated!";
+                $_SESSION['cart_dialog'] = 0;
+
+            };
+            if(isset($_POST['delete']))
+            {
+                $con = dbutil::getInstance();
+                $new_cat = $con->secureInput($_POST['new_cat']);
+                $cid = $con->secureInput($_POST['clist']);
+                $sql = "DELETE FROM `osms`.`tbl_category` WHERE `tbl_category`.`category_id` = $cid ";
+                $res = $con->doQuery($sql);
+                $_SESSION['cart_msg'] = "Category Deleted!";
+                $_SESSION['cart_dialog'] = 0;
+            }
+            require APP.'view/templates/admin_header.php';
+            require APP.'view/templates/admin_body.php';
+            require APP.'view/view.update_category.php';
             if(isset($_SESSION['cart_msg']) && isset($_SESSION['cart_dialog']))
             {
                 if($_SESSION['cart_dialog'] == 0)

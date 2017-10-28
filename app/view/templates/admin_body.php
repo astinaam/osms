@@ -7,7 +7,7 @@
                 </li>
             </ul><ul class="nav nav-pills flex-column">
                 <li class="nav-item" id="2" onclick="makeActive(this);">
-                    <a href="#" class="navlink">Edit Category</a>
+                    <a href="<?php Util::link('admin/editCategory'); ?>" class="navlink">Edit Category</a>
                 </li>
             </ul>
 <!--            <ul class="nav nav-pills flex-column">-->
