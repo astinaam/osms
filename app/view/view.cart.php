@@ -32,7 +32,7 @@
                     ?>
                     <tr>
                         <td>
-                            <?php echo $pname; ?>
+                            <a href="<?php Util::link('product/view/'.$current_row['product_id']); ?>"><?php echo $pname; ?></a>
                         </td>
                         <td>
                             <?php echo $qty; ?>

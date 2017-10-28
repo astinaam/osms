@@ -12,12 +12,14 @@
                     <?php
                     $con = dbutil::getInstance();
                     $cid = $_SESSION['user_id'];
-                    $sql = "SELECT * FROM `tbl_payment` WHERE `customer_id` = $cid AND `status` = 0 ORDER BY `payment_date` DESC ;";
+                    $sql = "SELECT * FROM `tbl_payment` WHERE `status` = 0 ORDER BY `payment_date` DESC ;";
                     $res = $con->doQuery($sql);
                     if($con->getNumRows() > 0)
                     {
                     ?>
                     <thead>
+                    <th>Customer</th>
+                    <th>Order ID</th>
                     <th>Time of Payment</th>
                     <th>Amount</th>
                     <th>Transaction Number</th>
@@ -30,6 +32,14 @@
                         $curr_row = $rows[$i];
                         ?>
                         <tr>
+                            <td>
+                                <a href="<?php Util::link('customer/adminview/'.$curr_row['customer_id']); ?>">
+                                    <?php echo Products::getCustomerNameById($curr_row['customer_id']); ?>
+                                </a>
+                            </td>
+                            <td>
+                                <?php echo $curr_row['order_id']; ?>
+                            </td>
                             <td>
                                 <?php echo $curr_row['payment_date']; ?>
                             </td>
@@ -54,12 +64,14 @@
                     <?php
                     $con = dbutil::getInstance();
                     $cid = $_SESSION['user_id'];
-                    $sql = "SELECT * FROM `tbl_payment` WHERE `customer_id` = $cid AND `status` = 1 ORDER BY `payment_date` DESC  ;";
+                    $sql = "SELECT * FROM `tbl_payment` WHERE `status` = 1 ORDER BY `payment_date` DESC  ;";
                     $res = $con->doQuery($sql);
                     if($con->getNumRows() > 0)
                     {
                     ?>
                     <thead>
+                    <th>Customer</th>
+                    <th>Order ID</th>
                     <th>Time of Payment</th>
                     <th>Amount</th>
                     <th>Transaction Number</th>
@@ -73,6 +85,14 @@
 //                        $t_cost = Products::getPriceById($curr_row['product_id']) * $curr_row['quantity'];
                         ?>
                         <tr>
+                            <td>
+                                <a href="<?php Util::link('customer/adminview/'.$curr_row['customer_id']); ?>">
+                                    <?php echo Products::getCustomerNameById($curr_row['customer_id']); ?>
+                                </a>
+                            </td>
+                            <td>
+                                <?php echo $curr_row['order_id']; ?>
+                            </td>
                             <td>
                                 <?php echo $curr_row['payment_date']; ?>
                             </td>

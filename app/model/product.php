@@ -62,6 +62,13 @@ class Products
         $res = $con->doQuery("SELECT * FROM `tbl_products` WHERE `tbl_products`.`product_id` = $id ");
         return $con->getTopRow()['price'];
     }
+    public static function getStockById($id)
+    {
+        $con = dbutil::getInstance();
+        $res = $con->doQuery("SELECT * FROM `tbl_products` WHERE `tbl_products`.`product_id` = $id ");
+        return $con->getTopRow()['stock_available'];
+    }
+
     public static function getQty($cid,$pid)
     {
         $con = dbutil::getInstance();
@@ -84,6 +91,21 @@ class Products
         return $t_cost;
     }
 
+    public static function getCustomerDetailsById($id)
+    {
+        $con = dbutil::getInstance();
+        $res = $con->doQuery("SELECT * FROM `tbl_customer` WHERE `customer_id` = $id ;");
+        $row = $con->getTopRow();
+        return $row;
+    }
+
+    public static function getCustomerNameById($id)
+    {
+        $con = dbutil::getInstance();
+        $res = $con->doQuery("SELECT * FROM `tbl_customer` WHERE `customer_id` = $id ;");
+        $row = $con->getTopRow();
+        return $row['customer_name'];
+    }
 
 }
 ?>
