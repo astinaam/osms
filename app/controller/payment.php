@@ -35,6 +35,14 @@ class payment extends Controller
             $cost = $_POST['cost'];
             $cid = $_SESSION['user_id'];
             $ctime = date('Y-m-d H:i:s');
+            $sql = "SELECT * FROM `tbl_payment` WHERE `bkash_transaction_No` = '$transaction_number'";
+            $res = $con->doQuery($sql);
+            if($con->getNumRows() > 0)
+            {
+                $_SESSION['cart_msg'] = "Invalid transaction number!";
+                $_SESSION['cart_dialog'] = 0;
+                header("Location: ".Util::php_link('payment/view'));
+            }
             $sql = "INSERT INTO `tbl_payment` (`payment_id`, `bkash_transaction_No`,`payment_date`, `amount`, `order_id`, `admin_id`,`customer_id`, `status`) 
 VALUES (NULL, '$transaction_number','$ctime', $cost , $oid,1, $cid, 0)";
 //            echo $sql;

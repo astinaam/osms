@@ -5,7 +5,7 @@
         <form action="<?php Util::php_link('admin/atn'); ?>" method="post">
             <input class="form-control" type="text" name="tn" id="tn" placeholder="Enter the transaction Number" required>
             <br>
-            <button class="btn btn-success" value="tran" type="submit" name="tran">Submit</button>
+            <button class="btn btn-success" value="tran" type="submit" onclick="return confirm('Are you sure?');" name="tran">Submit</button>
         </form>
     </div>
 </div>

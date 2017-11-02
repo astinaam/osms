@@ -2,6 +2,7 @@
 
     class admin extends Controller
     {
+        protected $order_id = null;
         public function index()
         {
             if(isset($_SESSION['role']))
@@ -375,6 +376,28 @@ VALUES (NULL, '$tran', '$date_added',0, 1);");
             require APP.'view/templates/admin_header.php';
             require APP.'view/templates/admin_body.php';
             require APP.'view/view.all_transaction.php';
+            require APP.'view/templates/admin_footer.php';
+        }
+        public function order_details($id)
+        {
+            $this->order_id = $id;
+            Util::admin404();
+            require APP.'view/templates/admin_header.php';
+            require APP.'view/templates/admin_body.php';
+            require APP.'view/view.order_details.php';
+            require APP.'view/templates/admin_footer.php';
+        }
+        public function approve_offline($id)
+        {
+            $this->order_id = $id;
+            Util::admin404();
+            if(isset($_POST['approve']))
+            {
+
+            }
+            require APP.'view/templates/admin_header.php';
+            require APP.'view/templates/admin_body.php';
+            require APP.'view/view.order_details.php';
             require APP.'view/templates/admin_footer.php';
         }
         public function verified()

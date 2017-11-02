@@ -46,7 +46,7 @@
             </ul>
         </nav>
         <main class="col-sm-9 com-md-10 offset-sm-3 offset-md-2 pt-3">
-            <div id="update_container" class="updates btn-success" style="border-radius: 2px;">
-                <p style="margin-left: 15px;" id="update_text" onclick="dismiss(this);">I am updates (click to dismiss!)</p>
-            </div>
+<!--            <div id="update_container" class="updates btn-success" style="border-radius: 2px;">-->
+<!--                <p style="margin-left: 15px;" id="update_text" onclick="dismiss(this);">I am updates (click to dismiss!)</p>-->
+<!--            </div>-->
 

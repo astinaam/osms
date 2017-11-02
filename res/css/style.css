@@ -13,7 +13,6 @@ tr
 #notification {
     visibility: hidden;
     min-width: 250px;
-    /*margin-left: -125px; !*  *!*/
     background-color: green;
     color: #fff;
     text-align: center;
@@ -33,7 +32,7 @@ tr
 
 @-webkit-keyframes fadein {
     from {top: 0; opacity: 0;}
-    to {bottom: 58px; opacity: 1;}
+    to {top: 58px; opacity: 1;}
 }
 
 @keyframes fadein {
