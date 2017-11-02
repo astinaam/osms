@@ -1,10 +1,12 @@
 <div class="container-fluid">
     <div class="row center-block" style="width:800px;">
-        <table class="table-bordered table-responsive">
+        <?php
+            $customer = Products::getCustomerDetailsById($this->customer_id);
+        ?>
+
+        <table class="table table-bordered table-responsive">
             <tbody>
-            <?php
-                $customer = Products::getCustomerDetailsById($this->customer_id);
-                ?>
+
             <tr>
                 <th style="padding: 10px;">Name</th>
                 <td style="padding: 10px;"><?php echo $customer['customer_name']; ?></td>
@@ -21,5 +23,6 @@
             </tr>
             </tbody>
         </table>
+
     </div>
 </div>
