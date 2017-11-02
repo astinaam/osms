@@ -129,9 +129,23 @@ class Products
     public static function getPaymentIdByOrderId($id)
     {
         $con = dbutil::getInstance();
-        $res = $con->doQuery("SELECT * FROM `tbl_order` WHERE `order_id` = $id ;");
+        $res = $con->doQuery("SELECT * FROM `tbl_payment` WHERE `order_id` = $id ;");
         $row = $con->getTopRow();
-        return $row;
+        return $row['payment_id'];
+    }
+    public static function getStatusOfPaymentById($id)
+    {
+        $con = dbutil::getInstance();
+        $res = $con->doQuery("SELECT * FROM `tbl_payment` WHERE `payment_id` = $id ;");
+        $row = $con->getTopRow();
+        if($row['status'] == 1)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 }
 ?>

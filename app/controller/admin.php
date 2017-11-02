@@ -11,6 +11,7 @@
                 {
                     require APP.'view/templates/admin_header.php';
                     require APP.'view/templates/admin_body.php';
+                    echo "<h3 class='text-center'>Hello Admin!</h3>";
                     require APP.'view/templates/admin_footer.php';
                 }
                 else
@@ -391,14 +392,13 @@ VALUES (NULL, '$tran', '$date_added',0, 1);");
         {
             $this->order_id = $id;
             Util::admin404();
-            if(isset($_POST['approve']))
-            {
-
-            }
-            require APP.'view/templates/admin_header.php';
-            require APP.'view/templates/admin_body.php';
-            require APP.'view/view.order_details.php';
-            require APP.'view/templates/admin_footer.php';
+            $con = dbutil::getInstance();
+            $sql = "UPDATE `tbl_order` SET `status` = 1 WHERE `tbl_order`.`order_id` = $id;";
+            $res = $con->doQuery($sql);
+            $pid = Products::getPaymentIdByOrderId($id);
+            $sql = "UPDATE `tbl_payment` SET `status` = 1 WHERE `tbl_payment`.`payment_id` = $pid;";
+            $res = $con->doQuery($sql);
+            header("Location: ".Util::php_link('admin/order_details/'.$id));
         }
         public function verified()
         {
