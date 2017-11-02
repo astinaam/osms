@@ -93,7 +93,9 @@
                                 </a>
                             </td>
                             <td>
-                                <?php echo $curr_row['order_id']; ?>
+                                <a href="<?php Util::link('admin/order_details/'.$curr_row['order_id']); ?>">
+                                    <?php echo $curr_row['order_id']; ?>
+                                </a>
                             </td>
                             <td>
                                 <?php echo $curr_row['payment_date']; ?>
