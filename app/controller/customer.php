@@ -65,19 +65,19 @@ class customer extends Controller
             Util::admin404();
         }
         require APP.'view/templates/header.php';
-        require APP.'view/view.update_customer.php';
+
         if(isset($_SESSION['msg']) && isset($_SESSION['msg_dialog']))
         {
             if($_SESSION['msg_dialog'] == 0)
             {
                 $_SESSION['msg_dialog'] = 1;
                 Util::setNotification($_SESSION['msg']);
-                Util::setNotificationBackground("green");
+                Util::setNotificationBackground("darkred");
                 Util::js("notification();");
             }
         }
-        require APP.'view/templates/footer.php';
-        var_dump($_POST);
+
+
         if(isset($_POST['upass']))
         {
             $con = dbutil::getInstance();
@@ -92,7 +92,7 @@ class customer extends Controller
             {
                 $current = $con->secureInput($_POST['oldp']);
             }
-            if(!isset($_POST['new']))
+            if(!isset($_POST['newp']))
             {
                 $_SESSION['msg'] = "Please Fill All The Field!";
                 $_SESSION['msg_dialog'] = 0;
@@ -100,9 +100,9 @@ class customer extends Controller
             }
             else
             {
-                $new = $con->secureInput($_POST['new']);
+                $new = $con->secureInput($_POST['newp']);
             }
-            if(!isset($_POST['newr']))
+            if(!isset($_POST['newpr']))
             {
                 $_SESSION['msg'] = "Please Fill All The Field!";
                 $_SESSION['msg_dialog'] = 0;
@@ -110,10 +110,12 @@ class customer extends Controller
             }
             else
             {
-                $rnew = $con->secureInput($_POST['newr']);
+                $rnew = $con->secureInput($_POST['newpr']);
             }
-            if($bad)
+            var_dump($bad);
+            if($bad > 0)
             {
+
                 header("Location: ".Util::php_link('customer/update/'.$this->customer_id));
             }
             $sql = "SELECT * FROM `tbl_customer` WHERE `tbl_customer`.`customer_id` = $id AND `tbl_customer`.`customer_pass` = '$current'";
@@ -122,20 +124,28 @@ class customer extends Controller
             {
                 $_SESSION['msg'] = "Please enter correct current password!";
                 $_SESSION['msg_dialog'] = 0;
-                Util::setNotificationBackground('darkred');
+                ;
                 header("Location: ".Util::php_link('customer/update/'.$this->customer_id));
             }
-            if($new != $rnew)
+            else if($new != $rnew)
             {
                 $_SESSION['msg'] = "Two passwords not matching!";
                 $_SESSION['msg_dialog'] = 0;
                 Util::setNotificationBackground('darkred');
                 header("Location: ".Util::php_link('customer/update/'.$this->customer_id));
             }
-            $sql = "UPDATE `tbl_customer` SET `customer_pass` = '$new' WHERE `tbl_customer`.`customer_id` = $id;";
-            $res = $con->doQuery($sql);
+            else
+            {
+                $sql = "UPDATE `tbl_customer` SET `customer_pass` = '$new' WHERE `tbl_customer`.`customer_id` = $id;";
+                $res = $con->doQuery($sql);
+                $_SESSION['msg'] = "Password Updated!";
+                $_SESSION['msg_dialog'] = 0;
+                header("Location: ".Util::php_link('customer/update/'.$this->customer_id));
+            }
 
         }
+        require APP.'view/view.update_customer.php';
+        require APP.'view/templates/footer.php';
 
     }
 }
